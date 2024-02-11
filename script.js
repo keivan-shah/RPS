@@ -1,7 +1,8 @@
 const types = ['rock', 'paper', 'scissors']; // Define types
+const imageScale = 0.25
 const numPlayers = 99; // Adjust number of players
-const minSpeed = 150;
-const maxSpeed = 600;
+const minSpeed = 128;
+const maxSpeed = 640;
 
 function compareTypes(type1, type2) {
   // Define win-lose relationships
@@ -37,7 +38,7 @@ class StartScreen extends Phaser.Scene {
   create() {
     // Add title text, instructions, and "Play Now" button
     this.titleText = this.add.text(config.width/2, config.height / 3, 'Rock Paper Scissors', { fontSize: 90, fill: '#fff', align: 'center'}).setOrigin(0.5, 0.5);
-    this.instructionsText = this.add.text(config.width/2, config.height / 2, 'Press any key or tap to start', { fontSize: 50, fill: '#fff', align: 'center' }).setOrigin(0.5, 0.5);
+    this.instructionsText = this.add.text(config.width/2, config.height / 2, 'This is just a random tournament of RPS!\nBet on one and press any key or tap to start', { fontSize: 50, fill: '#fff', align: 'center', wordWrap: {width: config.width}}).setOrigin(0.5, 0.5);
 
     // Set up input listeners
     this.input.keyboard.on('keyup', () => {
@@ -69,7 +70,8 @@ class EndScreen extends Phaser.Scene {
 
   create() {
     // Display end message (e.g., "Game Over!"), winner information (if applicable)
-    this.gameOverText = this.add.text(config.width/2, config.height / 3, `Game Over! ${this.winner} won!`, { fontSize: 90, fill: '#fff', align: 'center' }).setOrigin(0.5, 0.5);;
+    let winner = this.winner.charAt(0).toUpperCase() + this.winner.slice(1);
+    this.gameOverText = this.add.text(config.width/2, config.height / 3, `Game Over! ${winner} won!\nDid you win?`, { fontSize: 90, fill: '#fff', align: 'center',  wordWrap: {width: config.width} }).setOrigin(0.5, 0.5);;
     this.playAgainText = this.add.text(config.width/2, config.height / 2, 'Press any key or tap to replay', { fontSize: 50, fill: '#fff', align: 'center' }).setOrigin(0.5, 0.5);;
 
     // Set up input listeners
@@ -119,7 +121,7 @@ class Game extends Phaser.Scene
           case 'scissors': this.scissors.add(sprite); sprite.body.debugBodyColor = 0xb21d0a; break;
         }
         let speed = getRandomVelocity(minSpeed, maxSpeed);
-        sprite.setScale(0.25);
+        sprite.setScale(imageScale);
         sprite.setVelocity(speed.x, speed.y);
         sprite.setBounce(1.0).setCollideWorldBounds(true); // Add bouncing on collision
       }
