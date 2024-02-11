@@ -12,4 +12,4 @@ Hosting the game via Github Pages [here](https://keivan-shah.github.io/RPS/)!
 Acknowledgements:
 - [Google Gemini](https://blog.google/technology/ai/google-gemini-ai/)
 - [Phaser](https://github.com/phaserjs/phaser)
-- For sprites: (Emoji to PNG)[https://emoji.aranja.com/]
+- For sprites: [Emoji to PNG](https://emoji.aranja.com/)
